@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { RecoilState, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { createRoom } from '@/api/create';
@@ -10,6 +10,7 @@ import TextInput from '@/components/common/TextInput';
 import { GameInfoPage } from '@/pages/GameInfoPage';
 import { GameStartPage } from '@/pages/GameStartPage';
 import { currentNickname } from '@/recoil/nickname';
+import { WaitRoomJoin } from '@/pages/WaitRoomJoin';
 
 const ChatRoomCreate = () => {
   const [nickname, setNickname] = useRecoilState(currentNickname);
@@ -26,7 +27,8 @@ const ChatRoomCreate = () => {
       const roomId = await createRoom(roomName, nickname, maxUserCnt);
       setStep(1);
       setTimeout(() => setStep(2), 1500);
-      setTimeout(() => navigate(`/${roomId}`), 3000);
+      setTimeout(() => navigate(`/WaitRoomJoin${roomId}`), 3000);
+      navigate('/WaitRoomJoin', { state: { roomName, nickname, maxUserCnt, roomId } });
     } catch (error) {
       setError('채팅방 생성에 실패했습니다.');
     }
