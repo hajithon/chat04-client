@@ -1,8 +1,9 @@
 import ChatRoomCreate from '@/components/ChatRoomJoin/ChatRoomCreate';
+import TopNav from '@/components/common/TopNav';
 export const ChatRoomCreatePage = () => {
   return (
     <div>
-      <h1>Page1</h1>
+      <TopNav />
       <ChatRoomCreate />
     </div>
   );
