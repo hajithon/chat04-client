@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import styled from 'styled-components';
 
+import { Button } from '@/components/common/Button/Button';
 import TextInput from '@/components/common/TextInput';
 import { GameInfoPage } from '@/pages/GameInfoPage';
 import { GameStartPage } from '@/pages/GameStartPage';
@@ -36,31 +38,43 @@ const ParticipantsForm = () => {
     setStep(1);
   };
 
+  const isSubmitDisabled = !nickname || !roomId;
+
   if (step === 0) {
     return (
-      <div>
-        <h1>방장이 공유한 채팅방으로 가기</h1>
+      <Container>
+        <Title>참여하기</Title>
         <form onSubmit={handleCreateRoom}>
           <div>
-            <label>닉네임:</label>
+            <Label>별명</Label>
+            <br />
             <br />
             <TextInput
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
-              placeholder="닉네임을 입력하세요"
+              placeholder="사용할 별명을 입력해주세요"
             />
           </div>
           <div>
-            <label>참여 코드 입력:</label>
+            <Label>참여 코드 입력:</Label>
+            <br />
+            <br />
             <TextInput
               value={roomId}
               onChange={(e) => setRoomId(e.target.value)}
               placeholder="참여 코드를 입력하세요"
             />
           </div>
-          <button type="submit">채팅방 입장하기</button>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Button type="submit" variant="fill" disabled={isSubmitDisabled}>
+            채팅방 입장하기
+          </Button>
         </form>
-      </div>
+      </Container>
     );
   }
 
@@ -84,3 +98,22 @@ const ParticipantsForm = () => {
 };
 
 export default ParticipantsForm;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 100vh;
+`;
+
+const Title = styled.div`
+  ${({ theme }) => theme.fonts.headline1};
+  padding-top: 80px;
+  padding-bottom: 50px;
+`;
+
+const Label = styled.label`
+  ${({ theme }) => theme.fonts.body11};
+  color: ${({ theme }) => theme.colors.gray80};
+`;

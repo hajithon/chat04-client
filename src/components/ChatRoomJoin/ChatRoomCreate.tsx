@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import styled from 'styled-components';
 
 import { createRoom } from '@/api/create';
+import { Button } from '@/components/common/Button/Button';
+import TextInput from '@/components/common/TextInput';
 import { currentNickname } from '@/recoil/nickname';
 
 const ChatRoomCreate = () => {
@@ -25,43 +28,68 @@ const ChatRoomCreate = () => {
   };
 
   return (
-    <div>
-      <h1>채팅방 생성</h1>
+    <Container>
+      <Title>방 만들기</Title>
       <form onSubmit={handleCreateRoom}>
         <div>
-          <label>채팅방 이름:</label>
-          <input
-            type="text"
+          <Label>별명</Label>
+          <br />
+          <br />
+          <TextInput
             value={roomName}
             onChange={(e) => setRoomName(e.target.value)}
-            required
+            placeholder="사용할 별명을 입력해주세요"
           />
         </div>
         <div>
-          <label>닉네임:</label>
-          <input
-            type="text"
-            id="nickname"
+          <Label>방 이름</Label>
+          <br />
+          <br />
+          <TextInput
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-            required
+            placeholder="방 이름을 입력해주세요"
           />
         </div>
         <div>
-          <label>최대 사용자 수:</label>
-          <input
-            type="number"
+          <Label>참여자 수</Label>
+          <br />
+          <br />
+          <TextInput
             value={maxUserCnt}
             onChange={(e) => setMaxUserCnt(Number(e.target.value))}
-            min="1"
-            required
+            placeholder="몇 명이 참여하나요?"
           />
         </div>
-        <button type="submit">채팅방 생성</button>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Button type="submit">채팅방 생성</Button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
+    </Container>
   );
 };
 
 export default ChatRoomCreate;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 100vh;
+`;
+
+const Title = styled.div`
+  ${({ theme }) => theme.fonts.headline1};
+  padding-top: 80px;
+  padding-bottom: 50px;
+`;
+
+const Label = styled.label`
+  ${({ theme }) => theme.fonts.body11};
+  color: ${({ theme }) => theme.colors.gray80};
+`;

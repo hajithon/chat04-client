@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 interface TextInputProps {
-  value: string;
+  value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
 }

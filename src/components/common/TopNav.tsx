@@ -1,8 +1,8 @@
-import React from 'react';
-
 import styled from 'styled-components';
 
-const Property1Default = styled.div`
+import { ReactComponent as Gray } from '@/assets/logos/logo.svg'; // SVG 로고 임포트
+
+const PropertyDefault = styled.div`
   width: 100%;
   height: 48px;
   padding: 7px 285px 7px 18px;
@@ -16,18 +16,15 @@ const Property1Default = styled.div`
   z-index: 10;
 `;
 
-const Logo = styled.div`
-  color: #546aef;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 33.6px;
+const Logo = styled(Gray)`
+  width: auto;
 `;
 
-const TopNav: React.FC = () => {
+const TopNav = () => {
   return (
-    <Property1Default>
-      <Logo>LOGO</Logo>
-    </Property1Default>
+    <PropertyDefault>
+      <Logo />
+    </PropertyDefault>
   );
 };
 

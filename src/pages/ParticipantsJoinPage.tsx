@@ -1,8 +1,9 @@
 import ParticipantsForm from '@/components/Participants/ParticipantsForm';
+import TopNav from '@/components/common/TopNav';
 export const ParticipantsJoinPage = () => {
   return (
     <div>
-      <h1>Page1</h1>
+      <TopNav />
       <ParticipantsForm />
     </div>
   );
