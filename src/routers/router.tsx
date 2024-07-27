@@ -11,7 +11,7 @@ export const Router = () => {
       <Route path="/page1" element={<ChatRoomCreatePage />} />
       <Route path="/:roomId" element={<ChatRoomPage />} />
       <Route path="/ChatRoomJoin" element={<ChatRoomJoinPage />} />
-      <Route path="/ParticipantsJoin" element={<ParticipantsJoinPage />} />
+      <Route path="/ParticipantsJoin/:roomId" element={<ParticipantsJoinPage />} />
     </Routes>
   );
 };
