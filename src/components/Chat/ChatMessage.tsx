@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ReactComponent as GrayLogo } from '@/assets/logos/gray.svg';
+import { ReactComponent as GrayLogo } from '@/assets/logos/gameprofile.svg';
 interface ChatMessage {
   roomId: string;
   username: string;
@@ -12,6 +12,7 @@ const MessageContainer = styled.div`
   padding: 16px 20px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.gray20};
+  width: 335px;
 `;
 
 const UsernameContainer = styled.div`
@@ -30,7 +31,8 @@ const Username = styled.strong`
   color: ${({ theme }) => theme.colors.subpurpledeep};
   ${({ theme }) => theme.fonts.body22};
   position: relative;
-  padding-bottom: 5px;
+
+  padding-left: 10px;
 `;
 
 const Underline = styled.div`
