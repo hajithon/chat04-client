@@ -12,7 +12,6 @@ export const ChatRoomPage = () => {
   console.log('현재 닉네임 확인용:', nickname);
   return (
     <div>
-      <h1>Chat Room: {hardRoomId}</h1>
       <ChatRoom roomId={hardRoomId} username={nickname} />
     </div>
   );

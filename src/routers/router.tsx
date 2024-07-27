@@ -10,7 +10,7 @@ export const Router = () => {
   return (
     <Routes>
       <Route path="/roomCreate" element={<ChatRoomCreatePage />} />
-      <Route path="/start" element={<StartPage />} />
+      <Route path="/" element={<StartPage />} />
       <Route path="/:roomId" element={<ChatRoomPage />} />
       <Route path="/ChatRoomJoin" element={<ChatRoomJoinPage />} />
       <Route path="/ParticipantsJoin/:roomId" element={<ParticipantsJoinPage />} />

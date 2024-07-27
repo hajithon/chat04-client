@@ -1,6 +1,23 @@
+import { useNavigate } from 'react-router-dom'; // useNavigate 임포트
 import styled from 'styled-components';
 
 import { ReactComponent as Gray } from '@/assets/logos/logo.svg'; // SVG 로고 임포트
+
+const TopNav = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  return (
+    <PropertyDefault>
+      <Logo onClick={handleLogoClick} />
+    </PropertyDefault>
+  );
+};
+
+export default TopNav;
 
 const PropertyDefault = styled.div`
   width: 100%;
@@ -17,15 +34,5 @@ const PropertyDefault = styled.div`
 `;
 
 const Logo = styled(Gray)`
-  width: auto;
+  cursor: pointer;
 `;
-
-const TopNav = () => {
-  return (
-    <PropertyDefault>
-      <Logo />
-    </PropertyDefault>
-  );
-};
-
-export default TopNav;
