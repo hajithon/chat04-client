@@ -100,6 +100,9 @@ const GlobalStyle = createGlobalStyle`
     // font: inherit;
     vertical-align: baseline;
   }
+  div {
+  margin-bottom: 10px; 
+}
   article,
   aside,
   details,
