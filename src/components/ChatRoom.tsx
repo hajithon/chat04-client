@@ -73,9 +73,7 @@ const ChatRoom = ({ roomId, username }: ChatRoomProps) => {
           </div>
         ))}
         {Array.from(typingUsers).map((user, index) => (
-          <div key={`typing-${index}`} style={{ fontStyle: 'italic' }}>
-            {user}님이 입력 중입니다..
-          </div>
+          <div key={`typing-${index}`}>{user}님이 입력 중입니다..</div>
         ))}
       </div>
       <input
