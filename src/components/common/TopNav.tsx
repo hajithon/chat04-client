@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom'; // useNavigate 임포트
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as Gray } from '@/assets/logos/logo.svg'; // SVG 로고 임포트
-
+import { ReactComponent as Gray } from '@/assets/logos/logo.svg';
 const TopNav = () => {
   const navigate = useNavigate();
 
