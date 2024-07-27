@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 import { currentNickname } from '@/recoil/nickname';
 
 const ParticipantsForm = () => {
+  const { roomId: paramRoomId } = useParams();
   const [nickname, setNickname] = useRecoilState(currentNickname);
   const [roomId, setRoomId] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (paramRoomId) {
+      setRoomId(paramRoomId);
+    }
+  }, [paramRoomId]);
   const handleCreateRoom = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       navigate(`/${roomId}`);
     } catch (error) {
-      setError('채팅방 생성에 실패했습니다.');
+      setError('채팅방 입장에 실패했습니다.');
     }
   };
 
@@ -38,7 +43,7 @@ const ParticipantsForm = () => {
           <label>참여 코드 입력:</label>
           <input type="text" value={roomId} onChange={(e) => setRoomId(e.target.value)} required />
         </div>
-        <button type="submit">채팅방 생성</button>
+        <button type="submit">채팅방 입장하기</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
