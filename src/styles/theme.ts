@@ -6,6 +6,8 @@ const colors = {
   subyellow: '#FCE572',
   subblue: '#66E2F1',
   subpink: '#FF729E',
+  subpurpledeep: '#4C5FD7',
+  subpurplepale: '#EEF1FE',
 
   gray100: '#181A1B',
   gray90: '#2C2D30',
@@ -40,6 +42,30 @@ const FONT = ({ font, weight, size, lineHeight }: Font): string => {
 };
 
 const fonts = {
+  headline1: FONT({
+    font: 'NanumSquare',
+    weight: 800,
+    size: 32,
+    lineHeight: 48,
+  }),
+  headline2: FONT({
+    font: 'NanumSquare',
+    weight: 800,
+    size: 28,
+    lineHeight: 42,
+  }),
+  headline3: FONT({
+    font: 'NanumSquare',
+    weight: 800,
+    size: 24,
+    lineHeight: 36,
+  }),
+  headline4: FONT({
+    font: 'NanumSquare',
+    weight: 800,
+    size: 20,
+    lineHeight: 30,
+  }),
   subhead11: FONT({
     font: 'SUIT',
     weight: 700,
