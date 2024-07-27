@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import svgr from '@svgr/rollup';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 import stdLibBrowser from 'vite-plugin-node-stdlib-browser';
@@ -9,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  plugins: [react(), stdLibBrowser()],
+  plugins: [react(), stdLibBrowser(), svgr()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

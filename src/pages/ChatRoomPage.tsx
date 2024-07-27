@@ -1,21 +1,28 @@
-import React from 'react';
-
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import styled from 'styled-components';
 
-import ChatRoom from '@/components/ChatRoom';
+import ChatRoom from '@/components/Chat/ChatRoom';
+import ChatTitle from '@/components/Chat/ChatTitle';
 import { currentNickname } from '@/recoil/nickname';
 
 export const ChatRoomPage = () => {
   const { roomId } = useParams<{ roomId: string }>();
 
-  const hardRoomId = roomId || 'c0486097-54ce-4480-b077-d7203afd3122';
+  const hardRoomId = roomId || '';
   const nickname = useRecoilValue(currentNickname);
   console.log('현재 닉네임 확인용:', nickname);
   return (
-    <div>
-      <h1>Chat Room: {hardRoomId}</h1>
+    <Container>
+      <ChatTitle />
       <ChatRoom roomId={hardRoomId} username={nickname} />
-    </div>
+    </Container>
   );
 };
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  //padding: 16px;
+  background: ${({ theme }) => theme.colors.gray80};
+`;

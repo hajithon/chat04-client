@@ -1,63 +1,11 @@
-/*
 import React, { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import styled from 'styled-components';
 
-import { currentNickname } from '@/recoil/nickname';
-
-const ParticipantsForm = () => {
-  const { roomId: paramRoomId } = useParams();
-  const [nickname, setNickname] = useRecoilState(currentNickname);
-  const [roomId, setRoomId] = useState<string>('');
-  const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (paramRoomId) {
-      setRoomId(paramRoomId);
-    }
-  }, [paramRoomId]);
-  const handleCreateRoom = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    try {
-      navigate(`/${roomId}`);
-    } catch (error) {
-      setError('채팅방 입장에 실패했습니다.');
-    }
-  };
-
-  return (
-    <div>
-      <h1>방장이 공유한 채팅방으로 가기</h1>
-      <form onSubmit={handleCreateRoom}>
-        <div>
-          <label>닉네임:</label>
-          <input
-            type="text"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>참여 코드 입력:</label>
-          <input type="text" value={roomId} onChange={(e) => setRoomId(e.target.value)} required />
-        </div>
-        <button type="submit">채팅방 입장하기</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
-  );
-};
-
-export default ParticipantsForm;
-*/
-import React, { useEffect, useState } from 'react';
-
-import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-
+import { Button } from '@/components/common/Button/Button';
+import TextInput from '@/components/common/TextInput';
 import { GameInfoPage } from '@/pages/GameInfoPage';
 import { GameStartPage } from '@/pages/GameStartPage';
 import { currentNickname } from '@/recoil/nickname';
@@ -90,32 +38,43 @@ const ParticipantsForm = () => {
     setStep(1);
   };
 
+  const isSubmitDisabled = !nickname || !roomId;
+
   if (step === 0) {
     return (
-      <div>
-        <h1>방장이 공유한 채팅방으로 가기</h1>
+      <Container>
+        <Title>참여하기</Title>
         <form onSubmit={handleCreateRoom}>
           <div>
-            <label>닉네임:</label>
-            <input
-              type="text"
+            <Label>별명</Label>
+            <br />
+            <br />
+            <TextInput
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
-              required
+              placeholder="사용할 별명을 입력해주세요"
             />
           </div>
           <div>
-            <label>참여 코드 입력:</label>
-            <input
-              type="text"
+            <Label>참여 코드 입력:</Label>
+            <br />
+            <br />
+            <TextInput
               value={roomId}
               onChange={(e) => setRoomId(e.target.value)}
-              required
+              placeholder="참여 코드를 입력하세요"
             />
           </div>
-          <button type="submit">채팅방 입장하기</button>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Button type="submit" variant="fill" disabled={isSubmitDisabled}>
+            채팅방 입장하기
+          </Button>
         </form>
-      </div>
+      </Container>
     );
   }
 
@@ -139,3 +98,22 @@ const ParticipantsForm = () => {
 };
 
 export default ParticipantsForm;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 100vh;
+`;
+
+const Title = styled.div`
+  ${({ theme }) => theme.fonts.headline1};
+  padding-top: 80px;
+  padding-bottom: 50px;
+`;
+
+const Label = styled.label`
+  ${({ theme }) => theme.fonts.body11};
+  color: ${({ theme }) => theme.colors.gray80};
+`;
